@@ -2,6 +2,9 @@ import pygame
 from world import World
 from config import *
 
+INTERACTIVE = True
+INTERACTIVE_KEYPRESS = False
+
 pygame.init()
 clock = pygame.time.Clock()
 
@@ -11,21 +14,35 @@ pygame.display.set_caption('WFC')
 world = World(WORLD_X, WORLD_Y)
 
 running = True
+done = False
 
-while running:
-    print(running)
-    result = world.wave_function_collapse()
-    if not result:
-        running = False
+if not INTERACTIVE:
+    while running:
+        result = world.wave_function_collapse()
+        if not result:
+            running = False
+else:
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+                if event.key == pygame.K_SPACE:
+                    if INTERACTIVE == True and INTERACTIVE_KEYPRESS == True:
+                        world.wave_function_collapse()
+                        world.update()
 
-world.update()
+        if INTERACTIVE == True and INTERACTIVE_KEYPRESS == False:
+            if not done:
+                result = world.wave_function_collapse()
+                if result == 0:
+                    done = True
+            world.update()
 
-running = True
-
-while running:
-
-    world.render(display)
-    pygame.display.flip()
-    clock.tick(60)
+        world.render(display)
+        pygame.display.flip()
+        clock.tick(30)
 
 pygame.quit()
