@@ -41,12 +41,11 @@ else:
             if not done:
                 result = world.wave_function_collapse()
                 if result == 0:
-                    pygame.image.save(display, 'world.png')
                     done = True
             world.update()
 
         world.render(display)
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(300)
 
 pygame.quit()

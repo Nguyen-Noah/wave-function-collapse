@@ -69,6 +69,7 @@ class World:
         lowest_entropy_tiles = self.get_tiles_lowest_entropy()
 
         if len(lowest_entropy_tiles) == 0:
+            pygame.image.save(self.world_surface, 'world.png')
             return False
         
         collapse_tile = random.choice(lowest_entropy_tiles)

@@ -1,7 +1,7 @@
 SPRITESHEET_PATH = 'PunyWorld/punyworld-overworld-tileset.png'
 # world dimensions in tiles
-WORLD_X = 16
-WORLD_Y = 16
+WORLD_X = 64
+WORLD_Y = 48
 
 # tile size
 TILESIZE = 16
