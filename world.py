@@ -90,7 +90,7 @@ class World:
                         stack.push(neighbor)
 
         return True
-    
+
     def update(self):
         lowest_entropy = self.get_lowest_entropy()
         for y in range(WORLD_Y):

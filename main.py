@@ -2,6 +2,7 @@ import pygame
 from world import World
 from config import *
 
+SEED = True
 INTERACTIVE = True
 INTERACTIVE_KEYPRESS = False
 
@@ -22,6 +23,8 @@ if not INTERACTIVE:
         if not result:
             running = False
 else:
+    mouse_pos = pygame.mouse.get_pos()
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -38,6 +41,7 @@ else:
             if not done:
                 result = world.wave_function_collapse()
                 if result == 0:
+                    pygame.image.save(display, 'world.png')
                     done = True
             world.update()
 
